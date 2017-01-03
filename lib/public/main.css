@@ -1,0 +1,41 @@
+body {
+    padding: 0 10%;
+}
+.grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 50em;
+    width: 70%;
+    justify-content: space-between;
+}
+@media(max-width:400px){
+
+}
+.item {
+    text-align: center;
+    flex: 0 0 auto;
+}
+.leaf > img{
+    width: 225px;
+}
+.binbag {
+    background-image: url('img/bin-bag.jpg');
+    background-repeat: no-repeat;
+    min-width: 10em;
+    min-height: 10em;
+    position: absolute;
+    top: 2em;
+    right: 0;
+    background-size: contain;
+}
+
+.big-number {
+    color: white;
+    font-size: 50px;
+    font-weight: 500;
+    font: sans-serif;
+}
+.binbag > div {
+    margin: 40%;
+}
