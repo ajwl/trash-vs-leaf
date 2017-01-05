@@ -7,7 +7,7 @@ var numberItems = 6;
 var makeGrid = function(){
     let rando = Math.floor(Math.random() * 6 + 0);
 	var items = [];
-    for (var i =0; i < numberItems; i++){
+    for (let i =0; i < numberItems; i++){
     	if(i === rando) {
             items.push("crisps");
         }
@@ -57,9 +57,10 @@ class App extends React.Component {
 
    constructor(props){
        super(props);
-       this.state = { score: 0 };
+       this.state = { score: 0, list: [], grid: [] };
        this.onPickUp = this.onPickUp.bind(this);
        this.onLeafPick = this.onLeafPick.bind(this);
+       this.newList = this.newList.bind(this);
     }
 
     onPickUp() {
@@ -72,24 +73,29 @@ class App extends React.Component {
         this.setState({score: this.state.score});
     }
 
-    render() {
+    newList() {
         let things = makeGrid();
-        console.log(things);
-        var thingsInGrid = [];
+        let thingsInGrid = [];
         things.map((item, index) => {
             if (item == "leaf") {
-                thingsInGrid.push( <Leaf key={index.toString()} onLeafPick={ this.onLeafPick }/>);
+                thingsInGrid.push(<Leaf key={index.toString()} onLeafPick={ this.onLeafPick }/>);
             }
             else {
                 thingsInGrid.push(<CrispPacket key={index.toString()} onPickUp={ this.onPickUp }/>);
             }
         });
+        this.setState({grid: thingsInGrid});
+    }
+
+    render() {
+        setInterval(this.newList, 500);
+
         return (
 			<div className="App">
 				<BinBag score={this.state.score}/>
 				<p>Hello {this.props.name} can you complete this task?</p>
 				<div className="grid">
-                    {thingsInGrid}
+                    {this.state.grid}
 				</div>
 			</div>
         )
