@@ -2,21 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
-var numberItems = 6;
-
-var makeGrid = function(){
-    let rando = Math.floor(Math.random() * 6 + 0);
-	var items = [];
-    for (let i =0; i < numberItems; i++){
-    	if(i === rando) {
-            items.push("crisps");
-        }
-        else {
-			items.push("leaf")
-		}
-    };
-	return items;
-};
+const NUMBERITEMS = 6;
+var thingsInGrid = [];
 
 function CrispPacket(props){
 	return(
@@ -57,45 +44,53 @@ class App extends React.Component {
 
    constructor(props){
        super(props);
-       this.state = { score: 0, list: [], grid: [] };
+       this.state = { score: 0, trash: 0 };
        this.onPickUp = this.onPickUp.bind(this);
        this.onLeafPick = this.onLeafPick.bind(this);
-       this.newList = this.newList.bind(this);
+       this.trashNumber = this.trashNumber.bind(this);
     }
 
     onPickUp() {
         this.state.score += 1;
         this.setState({score: this.state.score});
+        this.trashNumber();
     }
 
     onLeafPick() {
         this.state.score -= 1;
         this.setState({score: this.state.score});
+        this.trashNumber();
     }
 
-    newList() {
-        let things = makeGrid();
-        let thingsInGrid = [];
-        things.map((item, index) => {
-            if (item == "leaf") {
-                thingsInGrid.push(<Leaf key={index.toString()} onLeafPick={ this.onLeafPick }/>);
-            }
-            else {
-                thingsInGrid.push(<CrispPacket key={index.toString()} onPickUp={ this.onPickUp }/>);
-            }
-        });
-        this.setState({grid: thingsInGrid});
+    trashNumber(){
+        let rando = Math.floor(Math.random() * NUMBERITEMS );
+        this.setState({ trash: rando });
     }
+
+    componentDidMount(){
+        setInterval(this.trashNumber, 1000);
+    }
+
 
     render() {
-        setInterval(this.newList, 500);
+        let thingsInGrid = [];
+
+        for(let i=0; i < NUMBERITEMS; i++) {
+            thingsInGrid.push( <Leaf key={i.toString()} onLeafPick={ this.onLeafPick }/> );
+        }
+
+        thingsInGrid.map((item, index) => {
+            if (index === this.state.trash) {
+                thingsInGrid.splice( index, 1, <CrispPacket key={index.toString()} onPickUp={ this.onPickUp }/> );
+            }
+        });
 
         return (
 			<div className="App">
 				<BinBag score={this.state.score}/>
 				<p>Hello {this.props.name} can you complete this task?</p>
 				<div className="grid">
-                    {this.state.grid}
+                    { thingsInGrid }
 				</div>
 			</div>
         )
