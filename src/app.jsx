@@ -46,14 +46,6 @@ class StopWatch extends React.Component {
         super(props);
     }
 
-    componentDidMount(){
-        this.interval = setInterval(this.props.onTick, 1000);
-    }
-
-    componentWillUnmount(){
-        clearInterval(this.props.interval);
-    }
-
     render() {
         return (
             <div className="counter">
@@ -79,10 +71,6 @@ class GameGrid extends React.Component {
         super(props);
     }
 
-    componentDidMount(){
-        setInterval(this.indexOfTrash, 1000);
-    }
-
     render(){
         let thingsInGrid = [];
         for(let i=0; i < NUMBERITEMS; i++) {
@@ -104,7 +92,7 @@ class GameGrid extends React.Component {
 GameGrid.propTypes = {
     trash: React.PropTypes.number.isRequired,
     onPickUp: React.PropTypes.func.isRequired,
-    running: React.PropTypes.bool.isRequired
+    running: React.PropTypes.bool.isRequired,
 };
 
 class App extends React.Component {
@@ -126,6 +114,8 @@ class App extends React.Component {
     }
 
     onTick(){
+        console.log(this.state.elapsed);
+
         if(this.state.running == true){
             if(this.state.elapsed < 30){
                 this.state.elapsed += 1;
@@ -145,8 +135,10 @@ class App extends React.Component {
     }
 
     indexOfTrash(){
-        let rando = Math.floor(Math.random() * NUMBERITEMS );
-        this.setState({ trash: rando });
+        if(this.state.running) {
+            let rando = Math.floor(Math.random() * NUMBERITEMS);
+            this.setState({trash: rando});
+        }
     }
 
     onPickUp(e) {
@@ -157,7 +149,18 @@ class App extends React.Component {
             this.state.score -= 1;
         }
         this.setState({score: this.state.score});
+        console.log(this.state.score);
         this.indexOfTrash();
+    }
+
+    componentDidMount(){
+        this.interval = setInterval(this.onTick, 1000);
+        this.interval2 = setInterval(this.indexOfTrash, 1000);
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.interval);
+        clearInterval(this.interval2);
     }
 
     render() {
@@ -165,7 +168,7 @@ class App extends React.Component {
 			<div className="App">
 				<BinBag score={this.state.score}/>
 				<p>Hello {this.props.name} can you complete this task?</p>
-                <StopWatch elapsed={this.state.elapsed} onClick={this.onStart} running={this.state.running}/>
+                <StopWatch elapsed={this.state.elapsed} onStart={this.onStart} running={this.state.running}/>
                 <GameGrid running={this.state.running} trash={this.state.trash} onPickUp={this.onPickUp}/>
 			</div>
         )
