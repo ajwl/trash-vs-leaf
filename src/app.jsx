@@ -115,14 +115,11 @@ class App extends React.Component {
     }
 
     onStart(){
-        console.log("this click thing set running");
         this.setState({running: true});
     }
 
     onTick(){
-        console.log(this.state.elapsed);
-
-        if(this.state.running == true){
+        if(this.state.running ==== true){
             if(this.state.elapsed < 30){
                 this.state.elapsed += 1;
                 this.setState({ elapsed: this.state.elapsed });
@@ -142,8 +139,7 @@ class App extends React.Component {
     }
 
     scoreReset(){
-        if(this.state.running == false){
-            console.log("this happened?");
+        if(this.state.running === false){
             this.setState({lastscore: this.state.score});
             this.setState({score: 0});
         }
@@ -164,7 +160,6 @@ class App extends React.Component {
             this.state.score -= 1;
         }
         this.setState({score: this.state.score});
-        console.log(this.state.score);
         this.indexOfTrash();
     }
 
