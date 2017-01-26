@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
 const NUMBERITEMS = 6;
-var thingsInGrid = [];
 
 function CrispPacket(props){
 	return(
@@ -29,15 +27,22 @@ Leaf.propTypes = {
 
 function BinBag(props){
     return(
-        <div className="binbag">
-            <div>
-                <span className="big-number">{props.score}</span>
+        <div className="scorebox">
+            <div className="last-score">
+                <p>Score to beat:</p>
+                <span>{props.lastscore}</span>
+            </div>
+            <div className="binbag">
+                <div>
+                    <span className="big-number">{props.score}</span>
+                </div>
             </div>
         </div>
     )
 };
 BinBag.propTypes = {
-	score: React.PropTypes.number.isRequired
+	score: React.PropTypes.number.isRequired,
+    lastscore: React.PropTypes.number.isRequired
 };
 
 
@@ -99,13 +104,14 @@ class App extends React.Component {
 
    constructor(props){
        super(props);
-       this.state = { score: 0, trash: 0, running: false, elapsed: 0 };
+       this.state = { score: 0, trash: 0, running: false, elapsed: 0, lastscore: 0 };
 
        this.onPickUp = this.onPickUp.bind(this);
        this.indexOfTrash = this.indexOfTrash.bind(this);
        this.onStart = this.onStart.bind(this);
        this.onTick = this.onTick.bind(this);
        this.onStop = this.onStop.bind(this);
+       this.scoreReset = this.scoreReset.bind(this);
     }
 
     onStart(){
@@ -123,6 +129,7 @@ class App extends React.Component {
             }
             else{
                 this.onStop();
+                this.scoreReset();
             }
         }
     }
@@ -132,6 +139,14 @@ class App extends React.Component {
             running: false,
             elapsed: 0
         });
+    }
+
+    scoreReset(){
+        if(this.state.running == false){
+            console.log("this happened?");
+            this.setState({lastscore: this.state.score});
+            this.setState({score: 0});
+        }
     }
 
     indexOfTrash(){
@@ -166,8 +181,8 @@ class App extends React.Component {
     render() {
         return (
 			<div className="App">
-				<BinBag score={this.state.score}/>
-				<p>Hello {this.props.name} can you complete this task?</p>
+                <p>Hello {this.props.name} can you complete this task?</p>
+				<BinBag score={this.state.score} lastscore={this.state.lastscore} />
                 <StopWatch elapsed={this.state.elapsed} onStart={this.onStart} running={this.state.running}/>
                 <GameGrid running={this.state.running} trash={this.state.trash} onPickUp={this.onPickUp}/>
 			</div>
