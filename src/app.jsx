@@ -119,7 +119,7 @@ class App extends React.Component {
     }
 
     onTick(){
-        if(this.state.running ==== true){
+        if(this.state.running === true){
             if(this.state.elapsed < 30){
                 this.state.elapsed += 1;
                 this.setState({ elapsed: this.state.elapsed });
