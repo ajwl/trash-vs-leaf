@@ -5,13 +5,14 @@
   "main": "index.js",
   "author": "Anna",
   "license": "ISC",
-  "node": "6.9.2",
+  "node": "7.2.1",
   "npm": "4.0.2",
 
   "scripts": {
     "dev": "webpack --content-base lib/app/views --progress",
     "build": "webpack -p --config webpack.config.js --profile --progress --colors",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "webpack -p --config webpack.config.js"
   },
 
   "dependencies": {
