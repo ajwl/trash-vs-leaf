@@ -50,7 +50,6 @@ class StopWatch extends React.Component {
     constructor(props){
         super(props);
     }
-
     render() {
         return (
             <div className="counter">
@@ -71,11 +70,9 @@ StopWatch.propTypes = {
 };
 
 class GameGrid extends React.Component {
-
     constructor(props){
         super(props);
     }
-
     render(){
         let thingsInGrid = [];
         for(let i=0; i < NUMBERITEMS; i++) {
