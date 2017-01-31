@@ -45,6 +45,24 @@ BinBag.propTypes = {
     lastscore: React.PropTypes.number.isRequired
 };
 
+function ResultBox(props){
+    return(
+        <div className="result-msg">
+            <p>
+                { props.lastscore < 3
+                    ?
+                    <span className"bad">Do you even care?!?!</span>
+                    :
+                    <span className="good">This is a good score. Take pride in your achievements</span>
+                }
+            </p>
+        </div>
+    )
+};
+ResultBox.propTypes = {
+    lastscore: React.PropTypes.number.isRequired
+};
+
 
 class StopWatch extends React.Component {
     constructor(props){
@@ -174,6 +192,8 @@ class App extends React.Component {
         return (
 			<div className="App">
                 <p>Hello {this.props.name} can you complete this task?</p>
+                {if this.state.lastscore}
+                <ResultBox lastscore={this.state.lastscore}/>
 				<BinBag score={this.state.score} lastscore={this.state.lastscore} />
                 <StopWatch elapsed={this.state.elapsed} onStart={this.onStart} running={this.state.running}/>
                 <GameGrid running={this.state.running} trash={this.state.trash} onPickUp={this.onPickUp}/>
