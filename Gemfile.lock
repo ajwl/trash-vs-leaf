@@ -17,7 +17,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  puma (~> 3.7)
+  puma (~> 3.7.0)
   rack (~> 2.0)
   sinatra (~> 2.0.0.beta1)
 

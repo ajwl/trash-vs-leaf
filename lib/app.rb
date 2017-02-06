@@ -1,4 +1,4 @@
-require 'Sinatra'
+require 'sinatra'
 
 class App < Sinatra::Base
 
