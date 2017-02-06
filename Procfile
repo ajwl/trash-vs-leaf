@@ -1,1 +1,1 @@
-web: ruby config.ru
+web: puma config.ru
