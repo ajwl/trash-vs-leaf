@@ -46,21 +46,23 @@ BinBag.propTypes = {
 };
 
 function ResultBox(props){
-    return(
-        <div className="result-msg">
-            <p>
-                { props.lastscore < 3
-                    ?
-                    <span className"bad">Do you even care?!?!</span>
-                    :
-                    <span className="good">This is a good score. Take pride in your achievements</span>
-                }
-            </p>
-        </div>
-    )
+    if(props.numbergames > 0) {
+        return (
+            <div className="result-msg">
+                <p>
+                    { props.lastscore < 3 ?
+                        <span className="bad">Do you even care?!?!?</span>
+                        :
+                        <span className="good">This is a good score. Take pride in your achievements</span>
+                    }
+                </p>
+            </div>
+        )
+    }
 };
 ResultBox.propTypes = {
-    lastscore: React.PropTypes.number.isRequired
+    lastscore: React.PropTypes.number.isRequired,
+    numbergames: React.PropTypes.number.isRequired
 };
 
 
@@ -119,7 +121,7 @@ class App extends React.Component {
 
    constructor(props){
        super(props);
-       this.state = { score: 0, trash: 0, running: false, elapsed: 0, lastscore: 0 };
+       this.state = { score: 0, trash: 0, running: false, elapsed: 0, lastscore: 0, numbergames: 0 };
 
        this.onPickUp = this.onPickUp.bind(this);
        this.indexOfTrash = this.indexOfTrash.bind(this);
@@ -155,8 +157,13 @@ class App extends React.Component {
 
     scoreReset(){
         if(this.state.running === false){
-            this.setState({lastscore: this.state.score});
-            this.setState({score: 0});
+            this.state.numbergames +=1;
+
+            this.setState({
+                lastscore: this.state.score,
+                score: 0,
+                numbergames: this.state.numbergames
+            });
         }
     }
 
@@ -192,8 +199,7 @@ class App extends React.Component {
         return (
 			<div className="App">
                 <p>Hello {this.props.name} can you complete this task?</p>
-                {if this.state.lastscore}
-                <ResultBox lastscore={this.state.lastscore}/>
+                <ResultBox numbergames={this.state.numbergames} lastscore={this.state.lastscore}/>
 				<BinBag score={this.state.score} lastscore={this.state.lastscore} />
                 <StopWatch elapsed={this.state.elapsed} onStart={this.onStart} running={this.state.running}/>
                 <GameGrid running={this.state.running} trash={this.state.trash} onPickUp={this.onPickUp}/>

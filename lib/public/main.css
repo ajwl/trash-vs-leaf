@@ -69,3 +69,9 @@ body {
 .binbag > div {
     margin: 40%;
 }
+.result-msg{
+    padding: .1em 1em;
+    color: white;
+    background-color: orange;
+    max-width: 10em;
+}
