@@ -1,1 +1,1 @@
-web: webpack && puma config.ru
+worker: webpack && puma config.ru
