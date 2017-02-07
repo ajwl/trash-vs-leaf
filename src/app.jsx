@@ -199,7 +199,7 @@ class App extends React.Component {
         return (
 			<div className="App">
                 <p>Hello {this.props.name} can you complete this task?</p>
-                <ResultBox numbergames={this.state.numbergames} lastscore={this.state.lastscore}/>
+                {/*<ResultBox numbergames={this.state.numbergames} lastscore={this.state.lastscore}/>*/}
 				<BinBag score={this.state.score} lastscore={this.state.lastscore} />
                 <StopWatch elapsed={this.state.elapsed} onStart={this.onStart} running={this.state.running}/>
                 <GameGrid running={this.state.running} trash={this.state.trash} onPickUp={this.onPickUp}/>
