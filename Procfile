@@ -1,1 +1,1 @@
-web: puma config.ru
+web: webpack && puma config.ru

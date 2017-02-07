@@ -11,7 +11,8 @@
   "scripts": {
     "dev": "webpack -p --content-base lib/app/views --progress",
     "build": "webpack -p --config webpack.config.js --profile --progress --colors",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": ""
   },
 
   "dependencies": {
@@ -28,6 +29,9 @@
   },
 
   "devDependencies": {
-    "webpack-dev-server": "^1.14.1"
+    "react": "latest",
+    "react-dom": "latest",
+    "webpack-dev-server": "^1.14.1",
+    "webpack": "^1.12.12"
   }
 }
