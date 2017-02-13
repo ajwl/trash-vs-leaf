@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 
 module.exports = {
-  entry: ['./src/app.jsx'],
+  entry: ['./src/levelone.jsx'],
   output: {
     path: './lib/public/js',
     filename: 'app.js'
@@ -16,3 +16,5 @@ module.exports = {
   },
   plugins: []
 };
+
+module.exports = config;

@@ -70,6 +70,11 @@ body {
 .result-msg{
     padding: .1em 1em;
     color: white;
-    background-color: orange;
     max-width: 10em;
+}
+.result-msg .bad{
+    background-color: orange;
+}
+.result-msg .good{
+
 }
