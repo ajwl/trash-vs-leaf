@@ -6,4 +6,12 @@ class App < Sinatra::Base
     erb :index
   end
 
+  get '/levelone' do
+    erb :levelone
+  end
+
+  get '/leveltwo' do
+    erb :leveltwo
+  end
+
 end

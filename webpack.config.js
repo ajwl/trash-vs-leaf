@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 
-module.exports = {
+var config = {
   entry: ['./src/levelone.jsx'],
   output: {
     path: './lib/public/js',
