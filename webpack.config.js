@@ -1,9 +1,9 @@
 var webpack = require('webpack');
 
 var config = {
-  entry: ['./src/levelone.jsx'],
+  entry: ['./src/js/app.jsx'],
   output: {
-    path: './lib/public/js',
+    path: './dist/js/',
     filename: 'app.js'
   },
   module: {
@@ -14,7 +14,13 @@ var config = {
       { test: /\.jsx$/, loaders: ['jsx-loader', "babel-loader?stage=0"] }
     ]
   },
-  plugins: []
+    plugins: [],
+    devServer: {
+        historyApiFallback: true,
+        contentBase: './',
+        inline: true,
+        port : 3000
+}
 };
 
 module.exports = config;

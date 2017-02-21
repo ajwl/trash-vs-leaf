@@ -215,6 +215,6 @@ LevelOne.propTypes = {
     score: React.PropTypes.number
 };
 
-export default LevelOne
+export default LevelOne;
 
 // ReactDOM.render(<LevelOne name="challenger" />, document.getElementById("root"));

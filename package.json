@@ -8,7 +8,7 @@
   "node": "7.2.1",
   "npm": "4.0.2",
   "scripts": {
-    "dev": "webpack -p --content-base lib/app/views --progress",
+    "dev": "webpack -p --content-base dist --progress",
     "build": "webpack -p --config webpack.config.js --profile --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "webpack"

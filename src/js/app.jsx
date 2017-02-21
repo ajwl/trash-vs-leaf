@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
 
 //Import custom components
-import LevelOne from '/src/levelone.jsx'
+import LevelOne from './levelone.jsx'
 
 ReactDOM.render(
     <Router history={HashHistory}>
