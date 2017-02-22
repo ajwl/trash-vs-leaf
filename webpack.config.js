@@ -11,13 +11,13 @@ var config = {
       { test: /\.html$/, loader: "file?name=[name].[ext]"} ,
       { test: /\.css$/, loader: 'style!css' },
       { test: /\.js$/, loader: "babel-loader?stage=0", exclude: '/node_modules/' },
-      { test: /\.jsx$/, loaders: ['jsx-loader', "babel-loader?stage=0"] }
+      { test: /\.jsx$/, loader: 'babel' }
     ]
   },
     plugins: [],
     devServer: {
         historyApiFallback: true,
-        contentBase: './',
+        contentBase: './dist',
         inline: true,
         port : 3000
 }
