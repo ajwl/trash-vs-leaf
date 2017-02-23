@@ -49,16 +49,14 @@ function ResultBox(props){
     let results;
     if(props.numbergames > 0) {
         results = props.lastscore < 3 ?
-            <span className="bad">Do you even care?!?!?</span>
+            <div className="bad">This is a terrible score. Do you even care?!?!?</div>
             :
-            <span className="good">This is a good score. Take pride in your achievements</span>
+            <div className="good">This is a good score. Take pride in your achievements</div>
     }
     else { results = <span></span>; }
     return (
         <div className="result-msg">
-            <p>
                 { results }
-            </p>
         </div>
     )
 };

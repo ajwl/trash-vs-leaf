@@ -74,7 +74,9 @@ body {
 }
 .result-msg .bad{
     background-color: orange;
+    padding: 1em;
 }
 .result-msg .good{
-
+    background-color: green;
+    padding: 1em;
 }
