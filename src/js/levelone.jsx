@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 
 const NUMBERITEMS = 6;
 
@@ -46,19 +46,19 @@ BinBag.propTypes = {
 };
 
 function ResultBox(props){
+    let results;
     if(props.numbergames > 0) {
-        return (
-            <div className="result-msg">
-                <p>
-                    { props.lastscore < 3 ?
-                        <span className="bad">Do you even care?!?!?</span>
-                        :
-                        <span className="good">This is a good score. Take pride in your achievements</span>
-                    }
-                </p>
-            </div>
-        )
+        results = props.lastscore < 3 ?
+            <div className="bad">This is a terrible score. Do you even care?!?!?</div>
+            :
+            <div className="good">This is a good score. Take pride in your achievements</div>
     }
+    else { results = <span></span>; }
+    return (
+        <div className="result-msg">
+                { results }
+        </div>
+    )
 };
 ResultBox.propTypes = {
     lastscore: React.PropTypes.number.isRequired,
@@ -117,7 +117,7 @@ GameGrid.propTypes = {
     running: React.PropTypes.bool.isRequired,
 };
 
-class App extends React.Component {
+class LevelOne extends React.Component {
 
    constructor(props){
        super(props);
@@ -208,9 +208,11 @@ class App extends React.Component {
     }
 };
 
-App.propTypes = {
+LevelOne.propTypes = {
     name: React.PropTypes.string,
     score: React.PropTypes.number
 };
 
-ReactDOM.render(<App name="challenger" />, document.getElementById("root"));
+export default LevelOne;
+
+// ReactDOM.render(<LevelOne name="challenger" />, document.getElementById("root"));
