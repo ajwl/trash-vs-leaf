@@ -4,10 +4,8 @@ import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 're
 
 //Import custom components
 import LevelOne from './levelone.jsx'
-
-const Greeting = () => <h1>Hello greetings</h1>;
-const LevelTwo = () => <h1>Level 2 is here</h1>;
-
+import LevelTwo from './leveltwo.jsx'
+import Greeting from './greeting.jsx'
 
 ReactDOM.render(
     <Router history={hashHistory}>
